@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --tab-background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.58) 0%,
+      rgba(255, 255, 255, 0.29) 100%
+    );
+    --background: linear-gradient(180deg, #eaf2e8 0%, #b9c7b5 100%);
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: linear-gradient(89.14deg, #3da229 0.68%, #247814 100%);
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-label {
+    @apply text-gray-500 text-xs font-normal;
+  }
+}
+
+.active {
+  position: relative;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2.5rem;
+  right: -2.2rem; /* Adjust as needed */
+  width: 80px;
+  height: 100px;
+  background: #f1f6ef;
+  clip-path: path("M50,0 L50,50 L0,50 A50,50 0 0,0 50,0 Z");
+  transform: scale(2) rotate(90deg);
+  transform: rotate(90deg);
+}
+.active-before::before {
+  content: "";
+  position: absolute;
+  bottom: -2.5rem;
+  right: 9.4rem; /* Adjust as needed */
+  width: 80px;
+  height: 100px;
+  /* background: red; */
+  background: #f1f6ef;
+  clip-path: path("M50,50 L50,0 L0,0 A50,50 0 0,1 50,50 Z");
+  transform: scale(2) rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.arbiclanguage {
+  direction: rtl;
+  text-align: right;
+}
+
+.adminDashboardBg {
+  background: linear-gradient(
+    258.35deg,
+    rgba(255, 255, 255, 0.5) 10.64%,
+    rgba(255, 255, 255, 0.2) 88.78%
+  );
+}
+
+.adminDashboardText {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.adminDashboardTextTitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.52px;
+  color: rgba(137, 139, 136, 1);
+}
+
+.adminSidebarBg {
+  background: linear-gradient(92.17deg, #bbf2b0 2.54%, #d8f3d2 99.39%);
+}
+
+.adminSidebarBgInactive {
+  background: linear-gradient(
+    92.51deg,
+    rgba(255, 255, 255, 0.58) 4.51%,
+    rgba(255, 255, 255, 0.29) 98.11%
+  );
+}
+
+.statisticsGraph {
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.searchEmergeButton {
+  background: rgba(255, 255, 255, 0.19);
+}
+
+.responseGraph {
+  background: linear-gradient(
+    340.24deg,
+    rgba(217, 217, 217, 0) 13.5%,
+    #9ae1d2 87.82%
+  );
+}
+
+.activeSidebarTextColor {
+  background: var(--Text-Default-Default, rgba(30, 30, 30, 1));
+}
+
+.barGraphVertical {
+  background: linear-gradient(180deg, #277c16 0%, #389925 100%);
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Thinner scrollbar */
+  height: 6px; /* Thinner horizontal scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* Darker thumb color */
+  border-radius: 10px; /* Rounded corners */
+  border: 2px solid transparent; /* Add border effect */
+  background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* Darker color on hover */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for the track */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent; /* No corner color */
+}
+
+.chatAvatarBg {
+  background: rgba(207, 247, 211, 1);
+}
+
+.organizationChartBg{
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.01) 100%);
+
+}
+
+.workLocationBg{
+  background: linear-gradient(89.14deg, #FFFFFF 0.68%, #F7FFF5 100%);
+
+}
+
+.workLocationBorder{
+  border: 1px solid rgba(61, 162, 41, 1)
+}
+
+.workLocationText{
+  color: rgba(61, 162, 41, 1);
+  font-size: 14px;
+}
+
+.loginFormBg{
+  background: linear-gradient(180deg, #EAF2E8 0%, #B9C7B5 100%);
+
+}
+
+.loginFormBgButton{
+  background: linear-gradient(89.14deg, #3DA229 0.68%, #247814 100%);
+
+}
+
+.inputBgColor{
+  background: rgba(216, 230, 213, 1);
+  border: 1px solid rgba(187, 206, 185, 1);
+  width: 360px;
+  height: 44px;
+  border-radius: 8px;
+}
+
+.loginSubTextBg{
+  color: var(--Text-Neutral-Default, rgba(48, 48, 48, 1));
+}
+
+.moveRight{
+  color: 1.5px solid var(--Icon-Neutral-Default, rgba(48, 48, 48, 1))
+}
+
+/* .tippy-box {
+  background-color: rgb(74 222 128);
+} */
+
+/* .tippy-arrow {
+  color: #ffffff;
+} */
+
+@media screen and (max-width: 768px) {
+  .active-before::before {
+    content: "";
+    position: absolute;
+    bottom: -2.5rem;
+    right: 4.6rem; /* Adjust as needed */
+    width: 80px;
+    height: 100px;
+    /* background: red; */
+    background: #f1f6ef;
+    clip-path: path("M50,50 L50,0 L0,0 A50,50 0 0,1 50,50 Z");
+    transform: scale(2) rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+/* 4.6rem; */

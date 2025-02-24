@@ -1,0 +1,82 @@
+<svg width="560" height="32" viewBox="0 0 560 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.512" y="0.512" width="30.976" height="30.976" rx="15.488" fill="white"/>
+<rect x="0.512" y="0.512" width="30.976" height="30.976" rx="15.488" stroke="#DFE8DD" stroke-width="1.024"/>
+<g clip-path="url(#clip0_1477_5501)">
+<mask id="mask0_1477_5501" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="3" width="29" height="29">
+<rect x="2.5" y="3.5" width="28" height="28" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_1477_5501)">
+<path d="M11.3965 20.9063V11.0954C11.3965 10.8268 11.4913 10.6017 11.6809 10.42C11.8704 10.2383 12.0916 10.1475 12.3444 10.1475C12.4234 10.1475 12.5063 10.1593 12.5932 10.183C12.6801 10.2067 12.7631 10.2423 12.8421 10.2896L20.5676 15.1951C20.7098 15.2899 20.8164 15.4084 20.8875 15.5506C20.9586 15.6928 20.9941 15.8429 20.9941 16.0008C20.9941 16.1588 20.9586 16.3089 20.8875 16.4511C20.8164 16.5933 20.7098 16.7118 20.5676 16.8066L12.8421 21.712C12.7631 21.7594 12.6801 21.795 12.5932 21.8187C12.5063 21.8424 12.4234 21.8542 12.3444 21.8542C12.0916 21.8542 11.8704 21.7634 11.6809 21.5817C11.4913 21.4 11.3965 21.1749 11.3965 20.9063Z" fill="#1E1E1E"/>
+</g>
+</g>
+<rect opacity="0.66" x="52" y="15" width="2" height="2" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="58" y="12" width="2" height="8" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="64" y="9" width="2" height="14" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="70" y="14" width="2" height="4" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="76" y="8" width="2" height="16" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="82" y="9" width="2" height="14" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="88" y="11" width="2" height="10" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="94" y="11" width="2" height="10" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="100" y="7" width="2" height="18" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="106" y="9" width="2" height="14" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="112" y="11" width="2" height="10" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="118" y="8" width="2" height="16" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="124" y="11" width="2" height="10" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="130" y="14" width="2" height="4" rx="1" fill="#EDEDED"/>
+<rect opacity="0.66" x="136" y="15" width="2" height="2" rx="1" fill="#EDEDED"/>
+<g clip-path="url(#clip1_1477_5501)">
+<rect opacity="0.66" x="52" y="15" width="2" height="2" rx="1" fill="#3DA229"/>
+<rect opacity="0.66" x="58" y="12" width="2" height="8" rx="1" fill="#3DA229"/>
+<rect opacity="0.66" x="64" y="9" width="2" height="14" rx="1" fill="#3DA229"/>
+<rect opacity="0.66" x="70" y="14" width="2" height="4" rx="1" fill="#3DA229"/>
+<rect opacity="0.66" x="76" y="8" width="2" height="16" rx="1" fill="#3DA229"/>
+<rect opacity="0.66" x="82" y="9" width="2" height="14" rx="1" fill="#3DA229"/>
+<rect opacity="0.66" x="88" y="11" width="2" height="10" rx="1" fill="#3DA229"/>
+<rect opacity="0.66" x="94" y="11" width="2" height="10" rx="1" fill="#3DA229"/>
+</g>
+<rect x="97" y="11" width="10" height="10" rx="5" fill="#3DA229"/>
+<g clip-path="url(#clip2_1477_5501)">
+<rect opacity="0.66" width="2" height="2" rx="1" transform="matrix(-1 0 0 1 208 15)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="8" rx="1" transform="matrix(-1 0 0 1 202 12)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="14" rx="1" transform="matrix(-1 0 0 1 196 9)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="4" rx="1" transform="matrix(-1 0 0 1 190 14)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="16" rx="1" transform="matrix(-1 0 0 1 184 8)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="14" rx="1" transform="matrix(-1 0 0 1 178 9)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="10" rx="1" transform="matrix(-1 0 0 1 172 11)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="10" rx="1" transform="matrix(-1 0 0 1 166 11)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="10" rx="1" transform="matrix(-1 0 0 1 160 11)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="14" rx="1" transform="matrix(-1 0 0 1 154 9)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="10" rx="1" transform="matrix(-1 0 0 1 148 11)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="16" rx="1" transform="matrix(-1 0 0 1 142 8)" fill="#EDEDED"/>
+</g>
+<rect opacity="0.66" width="2" height="8" rx="1" transform="matrix(-1 0 0 1 212 12)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="8" rx="1" transform="matrix(-1 0 0 1 216 12)" fill="#EDEDED"/>
+<g clip-path="url(#clip3_1477_5501)">
+<rect opacity="0.66" width="2" height="2" rx="1" transform="matrix(-1 0 0 1 286 15)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="8" rx="1" transform="matrix(-1 0 0 1 280 12)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="14" rx="1" transform="matrix(-1 0 0 1 274 9)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="4" rx="1" transform="matrix(-1 0 0 1 268 14)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="16" rx="1" transform="matrix(-1 0 0 1 262 8)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="14" rx="1" transform="matrix(-1 0 0 1 256 9)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="10" rx="1" transform="matrix(-1 0 0 1 250 11)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="10" rx="1" transform="matrix(-1 0 0 1 244 11)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="10" rx="1" transform="matrix(-1 0 0 1 238 11)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="14" rx="1" transform="matrix(-1 0 0 1 232 9)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="10" rx="1" transform="matrix(-1 0 0 1 226 11)" fill="#EDEDED"/>
+<rect opacity="0.66" width="2" height="16" rx="1" transform="matrix(-1 0 0 1 220 8)" fill="#EDEDED"/>
+</g>
+<defs>
+<clipPath id="clip0_1477_5501">
+<rect width="13" height="13" fill="white" transform="translate(9.5 9.5)"/>
+</clipPath>
+<clipPath id="clip1_1477_5501">
+<rect width="48" height="32" fill="white" transform="translate(52)"/>
+</clipPath>
+<clipPath id="clip2_1477_5501">
+<rect width="77" height="32" fill="white" transform="matrix(-1 0 0 1 217 0)"/>
+</clipPath>
+<clipPath id="clip3_1477_5501">
+<rect width="77" height="32" fill="white" transform="matrix(-1 0 0 1 295 0)"/>
+</clipPath>
+</defs>
+</svg>
