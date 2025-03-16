@@ -46,7 +46,7 @@ const FormSchema = z.object({
     .min(1, "Count of injured people is required"),
   countOfTotalPeople: z.string().min(1, "Count of total people is required"),
   location: z.string().min(1, "Location is required"),
-  damageAssets: z.string().min(1, "Damage Assets is required"),
+  utilityeffected: z.array(z.string()).min(1, "At least one utility must be selected"),
   finance: z.string().min(1, "Finance is required"),
   utilityAffected: z
     .array(z.string())
@@ -363,6 +363,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className=" space-y-2">
           <Label text="Level" />
+          <span className="text-red-500">*</span>
+
           <div>
             <div className="flex flex-wrap gap-2  md:gap-4  text-darkish">
               <Controller
@@ -400,6 +402,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className=" space-y-2">
           <Label text="Status" />
+          <span className="text-red-500">*</span>
           <div className="flex flex-wrap gap-2  md:gap-4  text-darkish">
             <Controller
               name="status"
@@ -503,6 +506,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className="space-y-2">
           <Label text="Type" htmlFor="type" />
+          <span className="text-red-500">*</span>
           <Controller
             name="type"
             control={control}
@@ -525,6 +529,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className=" space-y-2">
           <Label text="Description" htmlFor="description" />
+          <span className="text-red-500">*</span>
+
           <Controller
             name="description"
             control={control}
@@ -545,6 +551,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className=" space-y-2 ">
           <Label text="Assigned to" htmlFor="Damageassets" />
+          <span className="text-red-500">*</span>
+
           <div>
             <Controller
               name="assignedTo"
@@ -579,6 +587,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
               text="Count of injured people"
               htmlFor="countinjuredPeople"
             />
+                        <span className="text-red-500">*</span>
+
             <div>
               <Controller
                 name="countOfInjuredPeople"
@@ -603,6 +613,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
           <div className=" space-y-2 ">
             <Label text="Count of total people" htmlFor="counttotalPeople" />
+            <span className="text-red-500">*</span>
             <div>
               <Controller
                 name="countOfTotalPeople"
@@ -627,6 +638,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
         </div>
         <div className=" space-y-2">
           <Label text="Location" htmlFor="location" />
+          <span className="text-red-500">*</span>
+
           <div>
             <Controller
               name="location"
@@ -649,26 +662,61 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className=" space-y-2 ">
           <Label text="Damage assets" htmlFor="Damageassets" />
+          <span className="text-red-500">*</span>
+
           <div>
-            <Controller
-              name="damageAssets"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  onValueChange={(value) => field.onChange(value)}
-                >
-                  <SelectTrigger className="outline-none h-12">
-                    <SelectValue placeholder="Add assets" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="assets 1">assets 1</SelectItem>
-                    <SelectItem value="assets 2">assets 2</SelectItem>
-                    <SelectItem value="assets 3">assets 3</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
+          <Controller
+                  name="damageAssets"
+                  control={control}
+                  defaultValue={[]}
+                  render={({ field }) => (
+                    <div className="space-y-2">
+                      {/* Display selected assets as tags */}
+                      {field.value.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {field.value.map((asset: string) => (
+                            <div
+                              key={asset}
+                              className="bg-green-50 border border-customGreen rounded-md px-2 py-1 flex items-center gap-1"
+                            >
+                              <span>{asset}</span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const updatedValue = field.value.filter((val: string) => val !== asset)
+                                  field.onChange(updatedValue)
+                                }}
+                                className="text-red-500 hover:text-red-700"
+                              >
+                                <IoMdClose size={16} />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Dropdown for selecting assets */}
+                      <Select
+                        onValueChange={(value) => {
+                          if (!field.value.includes(value)) {
+                            field.onChange([...field.value, value])
+                          }
+                        }}
+                      >
+                        <SelectTrigger className="outline-none h-12">
+                          <SelectValue placeholder="Add assets" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {["assets 1", "assets 2", "assets 3"].map((asset) => (
+                            <SelectItem key={asset} value={asset} disabled={field.value.includes(asset)}>
+                              {asset}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+                />
           </div>
           {errors.damageAssets && (
             <p className="text-red-500 text-sm">{errors.damageAssets.message}</p>
@@ -677,6 +725,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className=" space-y-2 ">
           <Label text="Finance" htmlFor="Finance" />
+          <span className="text-red-500">*</span>
+
           <div>
             <Controller
               name="finance"
@@ -699,6 +749,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className=" space-y-2">
           <Label text="Utility effected" />
+          <span className="text-red-500">*</span>
+
           <div>
             <div className="flex flex-wrap gap-2  md:gap-4  text-darkish">
               <Controller
@@ -746,6 +798,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className=" space-y-2">
           <Label text="Upload images (Max 5)" />
+          <span className="text-red-500">*</span>
+
           <div
             onDragOver={handleDragOver}
             onDrop={(e) => handleDrop(e, "images")}
@@ -820,6 +874,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
         {/* Signature Upload */}
         <div className="space-y-2">
           <Label text="Digital signature" />
+          <span className="text-red-500">*</span>
           <div>
             <div
               onDragOver={handleDragOver}
@@ -879,6 +934,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className="space-y-4">
           <div className="text-darkish">
+            
             <Controller
               name="informToTeam"
               control={control}

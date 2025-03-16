@@ -1,4 +1,4 @@
-import DetailsPage from "@/components/admin/task-details/details/DetailsPage";
+import DetailsPage from "@/components/ClientDetailsPage";
 import React from "react";
 
 const page = () => {

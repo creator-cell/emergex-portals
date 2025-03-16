@@ -13,8 +13,6 @@ import { IoCallOutline } from "react-icons/io5";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-import RowBoxDetailpage from "./RowBoxDetailpage";
-import BackButton from "../../BackButton";
 import { ArrowLeft, Ellipsis, MoreHorizontal, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EditPenicon, LogoutIcon, ShareIcon } from "@/assets/icons/SvgIcons";
@@ -30,6 +28,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { setIsTimerStopped } from "@/store/api/common/incidentSlice";
 import { useRouter } from "next/navigation";
+import RowBoxDetailpage from "./admin/task-details/details/RowBoxDetailpage";
+import BackButton from "./admin/BackButton";
 
 const rasArra = [0, 1, 2, 3];
 const statusArra = [
@@ -179,7 +179,7 @@ const DetailsPage = () => {
 
   const handleEdit = () => {
     if (incidentId) {
-      router.push(`/admin/exploration-and-production/edit-incidents/${incidentId}`)
+      router.push(`/exploration-and-production/edit-incidents/${incidentId}`)
     }
   }
 

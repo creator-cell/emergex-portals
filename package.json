@@ -37,6 +37,7 @@
     "react-signature-pad-wrapper": "^4.1.0",
     "reactflow": "^11.11.4",
     "recharts": "^2.15.0",
+    "redux-persist": "^6.0.0",
     "sonner": "^1.7.2",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",

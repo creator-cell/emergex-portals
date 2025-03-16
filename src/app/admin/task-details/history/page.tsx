@@ -1,5 +1,9 @@
+"use client"
+
 import { EditPenicon, LogoutIcon, ShareIcon } from "@/assets/icons/SvgIcons";
 import BackButton from "@/components/admin/BackButton";
+import { useFetchIncidentHistoryByIncidentIdQuery } from "@/store/api/common/commonApi";
+import { useAppSelector } from "@/store/hooks";
 import React from "react";
 
 const page = () => {
@@ -29,6 +33,15 @@ const page = () => {
       date: "23 Dec 2024",
     },
   ];
+
+  const incidentId = useAppSelector(
+    (state) => state.incident.selectedIncidentId
+  );
+
+  const { data, error, isLoading } = useFetchIncidentHistoryByIncidentIdQuery(incidentId);
+
+  console.log(data);
+
   return (
     <div>
       <div className="flex items-center justify-between mb-4 bg-transparent mt-4">

@@ -127,6 +127,10 @@ export const commonApi = createApi({
       }),
     }),
 
+    fetchIncidentHistoryByIncidentId: builder.query<any, any>({
+      query: (incidentId) => `/incidents-history/update/${incidentId}`,
+    }),  
+
     /// mutations
 
     createAnnouncement: builder.mutation<
@@ -187,6 +191,14 @@ export const commonApi = createApi({
       query: (formData) => ({
         url: "/incidents/",
         method: "POST",
+        body: formData,
+      }),
+    }),
+
+    updateIncident: builder.mutation<any, any>({
+      query: ({ id, ...formData }) => ({
+        url: `incidents/incident-by-id/${id}`,
+        method: "PUT",
         body: formData,
       }),
     }),
@@ -277,5 +289,7 @@ export const {
   useStatisticsByProjectQuery,
   useFetchProjectOrganizationRolesQuery,
   useFetchProjectOrganizationEmployeesQuery,
-  useAddRoleInProjectOrganizationChartMutation
+  useAddRoleInProjectOrganizationChartMutation,
+  useUpdateIncidentMutation,
+  useFetchIncidentHistoryByIncidentIdQuery
 } = commonApi;
