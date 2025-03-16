@@ -434,7 +434,7 @@ const DetailsPage = () => {
                 </h2>
               </div>
               <div>
-                {statusArra?.map((e, i) => (
+                {statusData?.data.map((e:any, i:number) => (
                   <div key={i}>
                     <RowBoxDetailpage {...e} />
                   </div>
@@ -449,7 +449,7 @@ const DetailsPage = () => {
                 </h2>
               </div>
               <div>
-                {statusArra?.map((e, i) => (
+                {statusData?.data?.map((e:any, i:number) => (
                   <div key={i}>
                     <RowBoxDetailpage {...e} />
                   </div>
@@ -458,6 +458,7 @@ const DetailsPage = () => {
             </div>
           </div>
         </div>
+
       </div>
 
       {timerDialog &&
