@@ -131,6 +131,10 @@ export const commonApi = createApi({
       query: (incidentId) => `/incidents-history/update/${incidentId}`,
     }),  
 
+    fetchStatusUpdateByIncidentId: builder.query<any, any>({
+      query: (incidentId) => `/incidents-history/status/${incidentId}`,
+    }),  
+
     /// mutations
 
     createAnnouncement: builder.mutation<
@@ -291,5 +295,6 @@ export const {
   useFetchProjectOrganizationEmployeesQuery,
   useAddRoleInProjectOrganizationChartMutation,
   useUpdateIncidentMutation,
-  useFetchIncidentHistoryByIncidentIdQuery
+  useFetchIncidentHistoryByIncidentIdQuery,
+  useFetchStatusUpdateByIncidentIdQuery,
 } = commonApi;

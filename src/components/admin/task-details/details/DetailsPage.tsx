@@ -21,6 +21,7 @@ import { EditPenicon, LogoutIcon, ShareIcon } from "@/assets/icons/SvgIcons";
 import { useAppSelector } from "@/store/hooks";
 import {
   useFetchIncidentByIncidentIdQuery,
+  useFetchStatusUpdateByIncidentIdQuery,
   useStopIncidentTimerMutation,
   useUpdateIncidentStatusMutation,
 } from "@/store/api/common/commonApi";
@@ -68,6 +69,8 @@ const DetailsPage = () => {
     useStopIncidentTimerMutation();
 
   const [updateIncidentStatus] = useUpdateIncidentStatusMutation();
+
+const { data:statusData } = useFetchStatusUpdateByIncidentIdQuery(incidentId);
 
   const handleStatusChange = (newStatus: string) => {
     setPendingStatus(newStatus)
@@ -455,6 +458,7 @@ const DetailsPage = () => {
             </div>
           </div>
         </div>
+        
       </div>
 
       {timerDialog &&
