@@ -426,36 +426,23 @@ const { data:statusData } = useFetchStatusUpdateByIncidentIdQuery(incidentId);
         <div className="bg-white rounded-[40px] p-[32px] space-y-4">
           <h2 className=" text-darkish text-xl">Status updates </h2>
           <div className="space-y-8">
-            <div>
-              <div className="bg-[#F5F5F5] py-2 px-3">
-                {" "}
-                <h2 className=" text-darkish text-sm font-medium ">
-                  Safety Team
-                </h2>
+            {statusData?.data.map((item: any, index: number) =>
+              <div key={index + "" + index}>
+                <div className="bg-[#F5F5F5] py-2 px-3">
+                  {" "}
+                  <h2 className=" text-darkish text-sm font-medium ">
+                   {item.team}
+                  </h2>
+                </div>
+                <div>
+                  {item?.data?.map((e: any, i: number) => (
+                    <div key={i}>
+                      <RowBoxDetailpage {...e} />
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div>
-              {statusData?.data?.map((e:any, i:number) => (
-                  <div key={i}>
-                    <RowBoxDetailpage {...e} />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <div className="bg-[#F5F5F5] py-2 px-3">
-                {" "}
-                <h2 className=" text-darkish text-sm font-medium ">
-                  Medical Team
-                </h2>
-              </div>
-              <div>
-                {statusData?.data?.map((e:any, i:number) => (
-                  <div key={i}>
-                    <RowBoxDetailpage {...e} />
-                  </div>
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         </div>
         
