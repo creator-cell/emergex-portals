@@ -7,17 +7,37 @@ import React from "react";
 
 
 interface RowBoxPropsType {
-  name: string;
+  role: {
+    username: string;
+  };
   status: string;
-
-  dateAndTime: string;
+  createdAt: string;
 }
-const RowBoxDetailpage: React.FC<RowBoxPropsType> = ({
-  name,
-  status,
 
-  dateAndTime,
+const formatDate = (timestamp: string): string => {
+  const date = new Date(timestamp?.replace(/\.\d+Z|([+-]\d{2}:\d{2})$/, "Z"));
+  if (isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+
+  const options: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  return date.toLocaleDateString("en-US", options);
+};
+
+const RowBoxDetailpage: React.FC<RowBoxPropsType> = ({
+  role,
+  status,
+  createdAt,
 }) => {
+
   return (
     <div
       className={cn(
@@ -27,7 +47,7 @@ const RowBoxDetailpage: React.FC<RowBoxPropsType> = ({
       <div className="text-left pl-4 ">
         <TextBar
           title="Manager"
-          line={name}
+          line={role?.username}
           TitleClassName="text-label"
           LineClassname="text-[16px] leading-6 font-medium"
         />
@@ -44,7 +64,7 @@ const RowBoxDetailpage: React.FC<RowBoxPropsType> = ({
       <div className="text-left pl-4">
         <TextBar
           title="Date and time"
-          line={dateAndTime}
+          line={formatDate(createdAt)}
           TitleClassName="text-label"
           LineClassname="text-[16px] leading-6 font-medium"
         />
