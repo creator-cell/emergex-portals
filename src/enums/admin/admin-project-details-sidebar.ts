@@ -7,4 +7,9 @@ export const adminProjectDetailsSidebarLinks = [
         "label": "Incidents",
         "link": "/admin/exploration-and-production/incidents"
     },   
+    {
+        "label": "Roles",
+        "link": "/admin/exploration-and-production/roles"
+    },   
+    
 ]

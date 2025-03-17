@@ -7,4 +7,8 @@ export const projectDetailsSidebarLinks = [
         "label": "Incidents",
         "link": "/exploration-and-production/incidents"
     },   
+    {
+        "label": "Roles",
+        "link": "/exploration-and-production/roles"
+    },  
 ]

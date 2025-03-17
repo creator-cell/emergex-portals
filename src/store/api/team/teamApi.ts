@@ -55,6 +55,22 @@ export const teamApi = createApi({
       }),
     }),
 
+    addProjectRole: builder.mutation<any, { projectId: string; roles: { team: string; roleDescription: string; assignTo: string }[] }>({
+      query: ({ projectId, roles }) => ({
+        url: `/roles/project-roles/${projectId}`,
+        method: 'PUT',
+        body: { roles },
+      }),
+    }),
+
+    addEmployeeInTeam: builder.mutation<any, any>({
+      query: ({ teamId, employeeId }) => ({
+        url: `/teams/add-member/${teamId}`,
+        method: 'PUT',
+        body: { employeeId: [employeeId] }, 
+      }),
+    }),
+
     getTeamsNames: builder.query<GetTeamNamesResponse, void>({
       query: () => '/teams/team-names',
     }),
@@ -74,5 +90,7 @@ export const {
   useFetchEmployeesQuery,
   useAddMembersInTeamMutation,
   useGetTeamsNamesQuery,
-  useGetTeamDetailsQuery
+  useGetTeamDetailsQuery,
+  useAddEmployeeInTeamMutation,
+  useAddProjectRoleMutation
 } = teamApi;

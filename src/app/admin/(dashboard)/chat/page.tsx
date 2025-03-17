@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ChatMessage } from "@/components/super-admin/ChatMessage";
 import { useState } from "react";
 import { AttachSquareIcon, SendIcon } from "@/assets/icons/SvgIcons";
+import { useFetchTeamsQuery } from "@/store/api/team/teamApi";
 
 interface TeamGroup {
   name: string;
@@ -33,69 +34,69 @@ function TeamMemberAvatar({ member }: { member: TeamMember }) {
 }
 
 // Sample data
-const groups = [
-  {
-    name: "Emergency Response team",
-    members: [
-      {
-        id: "1",
-        name: "Gilbert Lambert",
-        role: "Onsite Emergency Response Manager",
-        initials: "GL",
-      },
-      {
-        id: "2",
-        name: "Joshua Thomas",
-        role: "Onsite Emergency Response Coordinator",
-        initials: "JT",
-      },
-      {
-        id: "3",
-        name: "Harriso Thomas",
-        role: "Onsite ERT Leader",
-        initials: "HT",
-      },
-      { id: "4", name: "Mason Lee", role: "Onsite ERT Leader", initials: "ML" },
-    ],
-  },
-  {
-    name: "HSE team",
-    members: [
-      {
-        id: "5",
-        name: "Charlotte King",
-        role: "HSE Supervisor",
-        initials: "CK",
-      },
-      { id: "6", name: "Ella Smith", role: "HSE Supervisor", initials: "ES" },
-      {
-        id: "7",
-        name: "Amelia Harris",
-        role: "HSE coordinator",
-        initials: "AH",
-      },
-    ],
-  },
-  {
-    name: "Medical team",
-    members: [
-      {
-        id: "8",
-        name: "Jasmine Morton",
-        role: "Medical Officer",
-        initials: "JM",
-      },
-      {
-        id: "9",
-        name: "Benjamin Thompson",
-        role: "Medical Officer",
-        initials: "BT",
-      },
-      { id: "10", name: "Zoe Nguyen", role: "Medical Officer", initials: "ZN" },
-      { id: "11", name: "Sophie Davis", role: "Nurse", initials: "SD" },
-    ],
-  },
-];
+// const groups = [
+//   {
+//     name: "Emergency Response team",
+//     members: [
+//       {
+//         id: "1",
+//         name: "Gilbert Lambert",
+//         role: "Onsite Emergency Response Manager",
+//         initials: "GL",
+//       },
+//       {
+//         id: "2",
+//         name: "Joshua Thomas",
+//         role: "Onsite Emergency Response Coordinator",
+//         initials: "JT",
+//       },
+//       {
+//         id: "3",
+//         name: "Harriso Thomas",
+//         role: "Onsite ERT Leader",
+//         initials: "HT",
+//       },
+//       { id: "4", name: "Mason Lee", role: "Onsite ERT Leader", initials: "ML" },
+//     ],
+//   },
+//   {
+//     name: "HSE team",
+//     members: [
+//       {
+//         id: "5",
+//         name: "Charlotte King",
+//         role: "HSE Supervisor",
+//         initials: "CK",
+//       },
+//       { id: "6", name: "Ella Smith", role: "HSE Supervisor", initials: "ES" },
+//       {
+//         id: "7",
+//         name: "Amelia Harris",
+//         role: "HSE coordinator",
+//         initials: "AH",
+//       },
+//     ],
+//   },
+//   {
+//     name: "Medical team",
+//     members: [
+//       {
+//         id: "8",
+//         name: "Jasmine Morton",
+//         role: "Medical Officer",
+//         initials: "JM",
+//       },
+//       {
+//         id: "9",
+//         name: "Benjamin Thompson",
+//         role: "Medical Officer",
+//         initials: "BT",
+//       },
+//       { id: "10", name: "Zoe Nguyen", role: "Medical Officer", initials: "ZN" },
+//       { id: "11", name: "Sophie Davis", role: "Nurse", initials: "SD" },
+//     ],
+//   },
+// ];
 
 const messages = [
   {
@@ -118,6 +119,8 @@ export default function Page() {
   const [selectedMember, setSelectedMember] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar visibility
 
+    const { data, isLoading, refetch } = useFetchTeamsQuery(); // Get teams and refetch function
+
   const handleSidebarClick = (memberId: string) => {
     setSelectedMember(memberId);
     setIsSidebarOpen(false); // Hide sidebar when a member is selected
@@ -127,6 +130,20 @@ export default function Page() {
     setIsSidebarOpen(true); // Show sidebar when the back arrow is clicked
     setSelectedMember(null); // Deselect the member
   };
+
+  const groups = data?.data?.map((team: any) => ({
+    name: team.name,
+    members: team.members.map((member: any) => ({
+      id: member._id,
+      name: member.name,
+      role: member.designation, // Mapping `designation` to `role`
+      initials: member.name
+        .split(" ")
+        .map((n: string) => n[0])
+        .join(""), // Generating initials
+    })),
+  })) || [];
+  
 
   return (
     <div className="flex h-screen sm:h-[90vh] sm:flex-row flex-col bg-custom-gradient gap-4">
@@ -209,7 +226,7 @@ export default function Page() {
                 </Button>
               </div>
 
-              <Button className="bg-gradient-to-r rounded-full from-[rgba(36,120,20,1)] to-[rgba(61,162,41,1)] text-black p-2 w-10 h-10 rounded-full flex items-center justify-center">
+              <Button className="bg-gradient-to-r from-[rgba(36,120,20,1)] to-[rgba(61,162,41,1)] text-black p-2 w-10 h-10 rounded-full flex items-center justify-center">
                 <SendIcon />
               </Button>
             </div>

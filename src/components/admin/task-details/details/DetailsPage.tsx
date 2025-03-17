@@ -70,7 +70,7 @@ const DetailsPage = () => {
 
   const [updateIncidentStatus] = useUpdateIncidentStatusMutation();
 
-const { data:statusData } = useFetchStatusUpdateByIncidentIdQuery(incidentId);
+  const { data: statusData } = useFetchStatusUpdateByIncidentIdQuery(incidentId);
 
   const handleStatusChange = (newStatus: string) => {
     setPendingStatus(newStatus)
@@ -458,7 +458,7 @@ const { data:statusData } = useFetchStatusUpdateByIncidentIdQuery(incidentId);
             </div>
           </div>
         </div>
-        
+
       </div>
 
       {timerDialog &&
