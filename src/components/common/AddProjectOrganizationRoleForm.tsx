@@ -12,7 +12,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useAddRoleInProjectOrganizationChartMutation, useFetchProjectOrganizationEmployeesQuery } from "@/store/api/common/commonApi";
-import { useGetTeamDetailsQuery, useGetTeamsNamesQuery } from "@/store/api/team/teamApi";
+import { useFetchEmployeesQuery, useFetchRolesQuery, useGetTeamDetailsQuery, useGetTeamsNamesQuery } from "@/store/api/team/teamApi";
 
 type AddProjectOrganizationRoleFormProps = {
     projectId: string;
@@ -22,7 +22,7 @@ type AddProjectOrganizationRoleFormProps = {
 };
 
 const schema = z.object({
-    team: z.union([z.string().regex(/^[a-f\d]{24}$/i, "Invalid team ID"), z.string().length(0)]).optional(),
+    role: z.union([z.string().regex(/^[a-f\d]{24}$/i, "Invalid team ID"), z.string().length(0)]).optional(),
     employee: z.string().nonempty("Employee ID is required").regex(/^[a-f\d]{24}$/i, "Invalid employee ID"),
     from: z.union([z.string().regex(/^[a-f\d]{24}$/i, "Invalid from employee ID"), z.string().length(0)]).optional(),
     to: z.union([z.string().regex(/^[a-f\d]{24}$/i, "Invalid to employee ID"), z.string().length(0)]).optional(),
@@ -39,27 +39,32 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
     } = useForm({
         resolver: zodResolver(schema),
         defaultValues: {
-            team: "",
+            role: "",
             employee: "",
             from: "",
             to: "",
         },
     });
 
-    const selectedTeam = watch("team");
+    const selectedTeam = watch("role");
     const { data: projectEmployeesResponse } = useFetchProjectOrganizationEmployeesQuery({ projectId, priority: true });
-    const projectEmployees = projectEmployeesResponse?.data[0].employees || [];
+    const projectEmployees = projectEmployeesResponse?.data?.[0]?.employees || []
 
     const { data: projectEmployeesWithoutPriorityResponse } = useFetchProjectOrganizationEmployeesQuery({ projectId, priority: false });
-    const projectEmployeesWithoutPriority = projectEmployeesWithoutPriorityResponse?.data[0].employees || [];
+    const projectEmployeesWithoutPriority = projectEmployeesWithoutPriorityResponse?.data?.[0]?.employees || []
 
     const { data: teamApiResponse } = useGetTeamsNamesQuery();
+    const { data: rolesApiResponse } = useFetchRolesQuery();
+    const { data: employeesResponse } = useFetchEmployeesQuery();
+
     const teamData = teamApiResponse?.data;
 
     const { data: teamDetails } = useGetTeamDetailsQuery(selectedTeam, {
         skip: !selectedTeam,
     });
-    const teamEmployees = teamDetails?.data.members;
+    const teamEmployees = employeesResponse?.data
+
+    const rolesData = rolesApiResponse?.data
 
     const [addRoleInProjectOrganizationChart, { isLoading, isError }] =
         useAddRoleInProjectOrganizationChartMutation();
@@ -73,7 +78,7 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
                 id: projectId,
                 from: data.from || undefined,
                 to: data.to || undefined,
-                team: data.team || undefined,
+                role: data.role || undefined,
                 employee: data.employee,
             }).unwrap();
 
@@ -154,9 +159,11 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
 
                     {/* Team */}
                     <div className="space-y-2">
-                        <Label>Team</Label>
+                        <Label>Role
+                        <span className="text-red-500">*</span>
+                        </Label>
                         <Controller
-                            name="team"
+                            name="role"
                             control={control}
                             render={({ field }) => (
                                 <Select onValueChange={field.onChange} value={field.value || ""}>
@@ -164,12 +171,12 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
                                         <SelectValue placeholder="Select team" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {teamData?.map((team: any, index: number) => (
+                                        {rolesData?.map((team: any, index: number) => (
                                             <SelectItem
                                                 key={team._id + index}
                                                 value={team._id}
                                             >
-                                                {team.name}
+                                                {team.title}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
@@ -183,7 +190,9 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
 
                     {/* Employee */}
                     <div className="space-y-2">
-                        <Label>Employee</Label>
+                        <Label>Employee
+                        <span className="text-red-500">*</span>
+                        </Label>
                         <Controller
                             name="employee"
                             control={control}
@@ -193,21 +202,14 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
                                         <SelectValue placeholder="Select employee" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {(selectedTeam ? teamEmployees : projectEmployeesWithoutPriority)?.map((employee: any, index: number) => {
-                                            const isDisabled = projectEmployees.some(
-                                                (existingEmployee: any) => existingEmployee._id === employee._id
-                                            );
-
-                                            return (
-                                                <SelectItem
-                                                    key={employee._id + index}
-                                                    value={employee._id}
-                                                    disabled={isDisabled}
-                                                >
-                                                    {employee.name}
-                                                </SelectItem>
-                                            );
-                                        })}
+                                    {teamEmployees?.map((team: any, index: number) => (
+                                            <SelectItem
+                                                key={team._id + index}
+                                                value={team._id}
+                                            >
+                                                {team.name}
+                                            </SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                             )}

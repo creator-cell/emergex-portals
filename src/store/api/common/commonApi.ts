@@ -254,14 +254,14 @@ export const commonApi = createApi({
         id: string;
         from?: string;
         to?: string;
-        team?: string;
+        role?: string;
         employee: string;
       }>
       ({
-      query: ({ id, from, to, team, employee }) => ({
+      query: ({ id, from, to, role, employee }) => ({
         url: `/roles/organization-chart/${id}`,
         method: "PUT",
-        body: { from, to, team, employee },
+        body: { from, to, role, employee },
       }),
     }),
   }),

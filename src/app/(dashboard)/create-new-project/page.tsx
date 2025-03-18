@@ -11,7 +11,7 @@ import {
   useFetchWorksitesByRegionQuery,
   useFetchProjectByLocationQuery,
 } from "@/store/api/common/commonApi"
-import { toast } from "sonner"
+import { toast, Toaster } from "sonner"
 import { Label } from "recharts"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
@@ -357,7 +357,7 @@ export default function Page() {
                     </Button>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600">Description</label>
+                    <label className="text-sm text-gray-600">Description <span className="text-red-500">*</span></label>
                     <Controller
                       name="description"
                       control={control}
@@ -373,7 +373,7 @@ export default function Page() {
           </div>
 
           <div className="flex justify-between gap-4 mt-8">
-            <Button  className="bg-gradient-to-r from-[#4D514C] to-[#232A21]" onClick={prevStep} disabled={step === 1}>
+            <Button className="bg-gradient-to-r from-[#4D514C] to-[#232A21]" onClick={prevStep} disabled={step === 1}>
               Previous
             </Button>
             {step === 2 ? (
@@ -395,7 +395,12 @@ export default function Page() {
                     }
                   }}
                 >
-                  <span className="text-white">Add Project</span>
+                  {isCreatingProject ? (
+                    <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <span className="text-white">Add Project</span>
+                  )}
+
                 </Button>
               </div>
             ) : (
@@ -405,6 +410,7 @@ export default function Page() {
             )}
           </div>
         </form>
+        <Toaster/>
 
         {isModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -412,7 +418,8 @@ export default function Page() {
               <h3 className="text-lg mb-4">Add New Project</h3>
 
               <div className="mb-6">
-                <label className="block text-sm font-normal mb-1">Name</label>
+                <label className="block text-sm font-normal mb-1">Name           <span className="text-red-500">*</span>
+                </label>
                 <div className="flex items-center border p-2 rounded">
                   <input
                     type="text"
@@ -425,7 +432,8 @@ export default function Page() {
               </div>
 
               <div className="mb-6">
-                <label className="block text-sm font-normal mb-1">Description</label>
+                <label className="block text-sm font-normal mb-1">Description           <span className="text-red-500">*</span>
+                </label>
                 <div className="flex items-center border p-2 rounded">
                   <textarea
                     className="w-full border-none outline-none"
@@ -446,7 +454,13 @@ export default function Page() {
                   onClick={handleAddExistingProject}
                   disabled={isCreatingProject}
                 >
-                  <span className="text-white">Add New Project</span>
+
+                  {isCreatingProject ? (
+                    <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <span className="text-white">Add New Project</span>
+                  )}
+
                 </Button>
               </div>
             </div>

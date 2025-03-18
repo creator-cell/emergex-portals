@@ -20,6 +20,10 @@ export const teamApi = createApi({
       query: () => '/teams',
     }),
 
+    fetchRoles: builder.query<any, any>({
+      query: () => '/roles',
+    }),
+
     fetchEmployees: builder.query<{ success: boolean; data: Team[]; message: string }, void>({
       query: () => '/employees',
     }),
@@ -31,6 +35,14 @@ export const teamApi = createApi({
         body: teamData,
       }),
     }),
+
+    addEmployee: builder.mutation<any, { name: string; email: string; contactNo: string; designation: string }>({
+      query: (employeeData) => ({
+        url: '/employees',
+        method: 'POST',
+        body: employeeData,
+      }),
+    }),    
 
     updateTeam: builder.mutation<Team, { id: string; data: Partial<Team> }>({
       query: ({ id, data }) => ({
@@ -92,5 +104,7 @@ export const {
   useGetTeamsNamesQuery,
   useGetTeamDetailsQuery,
   useAddEmployeeInTeamMutation,
-  useAddProjectRoleMutation
+  useAddProjectRoleMutation,
+  useAddEmployeeMutation,
+  useFetchRolesQuery
 } = teamApi;

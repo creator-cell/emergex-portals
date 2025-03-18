@@ -64,23 +64,23 @@ export default function Page() {
 
   const handleAddTeam = async () => {
     if (!teamName) return; // Ensure the team name is provided
-  
+
     try {
       const response = await addTeam({ name: teamName }).unwrap();
-  
+
       if (response.success) {
         setTeamName(""); // Clear the team name input
         closeModal(); // Close the modal after submission
-  
+
         refetch();
-  
+
         toast.success(response.message || "Team added successfully!");
       } else {
         toast.error(response.message || "Failed to add team.");
       }
     } catch (error: any) {
       console.error("Error adding team:", error);
-  
+
       if (error?.data?.error) {
         toast.error(error.data.error); // Display backend error message
       } else {
@@ -89,36 +89,36 @@ export default function Page() {
       }
     }
   };
-  
+
 
   const [addMembersInTeam, { isLoading: isAddingMembers }] =
     useAddMembersInTeamMutation();
 
-    const handleAddMembers = async (
-      selectedEmployees: Employee[],
-      teamId: string
-    ) => {
-      try {
-        const employeeIds = selectedEmployees.map((emp) => emp._id); // Extract only the IDs
-        await addMembersInTeam({
-          teamId: teamId, // Now using the teamId passed as an argument
-          employeeId: employeeIds, // Pass the selected employee IDs
-        }).unwrap();
-    
-        refetch();
-    
-        toast.success("Members added successfully!");
-      } catch (error: any) {
-        console.error("Error adding members:", error);
-    
-        if (error?.data?.error) {
-          toast.error(error.data.error); // Show backend error message
-        } else {
-          toast.error("Failed to add members. Please try again.");
-        }
+  const handleAddMembers = async (
+    selectedEmployees: Employee[],
+    teamId: string
+  ) => {
+    try {
+      const employeeIds = selectedEmployees.map((emp) => emp._id); // Extract only the IDs
+      await addMembersInTeam({
+        teamId: teamId, // Now using the teamId passed as an argument
+        employeeId: employeeIds, // Pass the selected employee IDs
+      }).unwrap();
+
+      refetch();
+
+      toast.success("Members added successfully!");
+    } catch (error: any) {
+      console.error("Error adding members:", error);
+
+      if (error?.data?.error) {
+        toast.error(error.data.error); // Show backend error message
+      } else {
+        toast.error("Failed to add members. Please try again.");
       }
-    };
-    
+    }
+  };
+
 
   if (isLoading) return <div></div>;
 
@@ -158,7 +158,8 @@ export default function Page() {
             {/* Team Name Input */}
             <div className="mb-6">
               <label className="block text-sm font-normal mb-1">
-                Team Name
+                Team Name           <span className="text-red-500">*</span>
+
               </label>
               <div className="flex items-center border p-2 rounded">
                 <input
@@ -185,7 +186,11 @@ export default function Page() {
                 onClick={handleAddTeam}
                 disabled={isAdding}
               >
-                <span className="text-white">Add new</span>
+                {isAdding ? (
+                  <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <span className="text-white">Add new</span>
+                )}
               </Button>
             </div>
           </div>

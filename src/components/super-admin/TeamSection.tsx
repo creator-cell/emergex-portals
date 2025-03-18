@@ -47,7 +47,7 @@ export function TeamSection({
   };
 
   const handleAddMember = () => {
-    
+
     if (selectedEmployees.length > 0 && onAddMember) {
       const selected = employees?.data?.filter((emp: any) =>
         selectedEmployees.includes(emp._id)
@@ -81,7 +81,8 @@ export function TeamSection({
       {isDropdownOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-[40px] p-6 w-[500px] shadow-lg">
-            <h3 className="text-lg mb-4 font-bold">Add Employees to {title}</h3>
+            <h3 className="text-lg mb-4 font-bold">Add Employees to {title}                 <span className="text-white">Add new</span>
+            </h3>
 
             {/* Multi-select Dropdown */}
             <div className="mb-6">
@@ -97,11 +98,10 @@ export function TeamSection({
                     <SelectItem
                       key={employee._id}
                       value={employee._id}
-                      className={`${
-                        selectedEmployees.includes(employee._id)
+                      className={`${selectedEmployees.includes(employee._id)
                           ? "font-bold text-green-600"
                           : ""
-                      }`}
+                        }`}
                     >
                       {employee.name} - {employee.email} -{" "}
                       {employee.designation}

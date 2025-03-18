@@ -11,7 +11,7 @@ import {
   useFetchWorksitesByRegionQuery,
   useFetchProjectByLocationQuery,
 } from "@/store/api/common/commonApi"
-import { toast } from "sonner"
+import { toast, Toaster } from "sonner"
 import { Label } from "recharts"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
@@ -252,7 +252,7 @@ export default function Page() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label>Worksite</Label>
+                    <Label>Worksite </Label>
                     <Controller
                       name="worksite"
                       control={control}
@@ -293,7 +293,7 @@ export default function Page() {
                 <Card className="ml-8 p-6 space-y-6 rounded-[20px] shadow-none border-none">
                   <div className="flex gap-4">
                     <div className="flex-1 space-y-2">
-                      <label className="text-sm text-gray-600">Emerge-x cases</label>
+                      <label className="text-sm text-gray-600">Emerge-x cases <span className="text-red-500">*</span></label>
                       <div className="flex items-center gap-4">
                         <Controller
                           name="name"
@@ -355,7 +355,7 @@ export default function Page() {
                     </Button>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600">Description</label>
+                    <label className="text-sm text-gray-600">Description <span className="text-red-500">*</span></label>
                     <Controller
                       name="description"
                       control={control}
@@ -393,7 +393,12 @@ export default function Page() {
                     }
                   }}
                 >
-                  <span className="text-white">Add Emerge-X cases</span>
+                  {isCreatingProject ? (
+                    <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <span className="text-white">Add Emerge-X cases</span>
+                  )}
+
                 </Button>
               </div>
             ) : (
@@ -403,6 +408,7 @@ export default function Page() {
             )}
           </div>
         </form>
+        <Toaster/>
 
         {isModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -410,7 +416,8 @@ export default function Page() {
               <h3 className="text-lg mb-4">Add New Project</h3>
 
               <div className="mb-6">
-                <label className="block text-sm font-normal mb-1">Name</label>
+                <label className="block text-sm font-normal mb-1">Name           <span className="text-red-500">*</span>
+                </label>
                 <div className="flex items-center border p-2 rounded">
                   <input
                     type="text"
@@ -423,7 +430,8 @@ export default function Page() {
               </div>
 
               <div className="mb-6">
-                <label className="block text-sm font-normal mb-1">Description</label>
+                <label className="block text-sm font-normal mb-1">Description           <span className="text-red-500">*</span>
+                </label>
                 <div className="flex items-center border p-2 rounded">
                   <textarea
                     className="w-full border-none outline-none"
@@ -444,7 +452,13 @@ export default function Page() {
                   onClick={handleAddExistingProject}
                   disabled={isCreatingProject}
                 >
-                  <span className="text-white">Add New Project</span>
+
+                  {isCreatingProject ? (
+                    <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <span className="text-white">Add New Project</span>
+                  )}
+
                 </Button>
               </div>
             </div>

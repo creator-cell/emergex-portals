@@ -6,11 +6,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { 
-  useFetchCountriesQuery, 
-  useFetchRegionsByCountryQuery, 
+import {
+  useFetchCountriesQuery,
+  useFetchRegionsByCountryQuery,
   useFetchWorksitesByRegionQuery,
-  useCreateAnnouncementMutation 
+  useCreateAnnouncementMutation
 } from "@/store/api/common/commonApi"
 import { useFetchTeamsQuery } from "@/store/api/team/teamApi"
 import { useForm, Controller } from "react-hook-form"
@@ -125,7 +125,10 @@ export default function AnnouncementForm() {
           <Card className="rounded-[40px] shadow-none border-none">
             <CardContent className="p-6 space-y-8">
               <div className="space-y-2">
-                <Label htmlFor="title">Title</Label>
+                <Label htmlFor="title">Title
+                  <span className="text-red-500">*</span>
+
+                </Label>
                 <Input
                   id="title"
                   {...register("title")}
@@ -136,7 +139,10 @@ export default function AnnouncementForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="description">Description
+                  <span className="text-red-500">*</span>
+
+                </Label>
                 <Textarea
                   id="description"
                   {...register("description")}
@@ -152,7 +158,10 @@ export default function AnnouncementForm() {
             <CardContent className="p-6 space-y-8">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label>Country</Label>
+                  <Label>Country
+                    <span className="text-red-500">*</span>
+
+                  </Label>
                   <Controller
                     name="country"
                     control={control}
@@ -175,13 +184,16 @@ export default function AnnouncementForm() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Region</Label>
+                  <Label>Region
+                    <span className="text-red-500">*</span>
+
+                  </Label>
                   <Controller
                     name="region"
                     control={control}
                     render={({ field }) => (
-                      <Select 
-                        onValueChange={handleRegionChange} 
+                      <Select
+                        onValueChange={handleRegionChange}
                         value={field.value}
                         disabled={!selectedCountry || regionsLoading}
                       >
@@ -202,13 +214,16 @@ export default function AnnouncementForm() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Worksite</Label>
+                  <Label>Worksite
+                    <span className="text-red-500">*</span>
+
+                  </Label>
                   <Controller
                     name="worksite"
                     control={control}
                     render={({ field }) => (
-                      <Select 
-                        onValueChange={field.onChange} 
+                      <Select
+                        onValueChange={field.onChange}
                         value={field.value}
                         disabled={!selectedRegion || worksitesLoading}
                       >
@@ -229,13 +244,16 @@ export default function AnnouncementForm() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Team</Label>
+                  <Label>Team
+                    <span className="text-red-500">*</span>
+
+                  </Label>
                   <Controller
                     name="team"
                     control={control}
                     render={({ field }) => (
-                      <Select 
-                        onValueChange={field.onChange} 
+                      <Select
+                        onValueChange={field.onChange}
                         value={field.value}
                       >
                         <SelectTrigger className="h-12">
@@ -263,7 +281,12 @@ export default function AnnouncementForm() {
               className="w-[10rem] rounded-full bg-green-600 hover:bg-green-700 text-white h-12"
               disabled={isCreating}
             >
-              {isCreating ? "Creating..." : "Announce"}
+              {isCreating ? (
+                <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <span className="text-white">{isCreating ? "Creating..." : "Announce"}</span>
+              )}
+
             </Button>
           </div>
         </form>

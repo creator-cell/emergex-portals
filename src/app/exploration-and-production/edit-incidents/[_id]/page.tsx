@@ -360,7 +360,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
       const response = await updateIncident({ incidentId, ...payload }).unwrap()
       if (response.success) {
         toast.success(response.message || "Incident updated successfully!")
-        router.push(`/admin/exploration-and-production/incidents/${projectId}`)
+        router.push(`/exploration-and-production/incidents/${projectId}`)
       } else {
         toast.error(response.message || "Failed to update incident.")
       }

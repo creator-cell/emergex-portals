@@ -76,5 +76,10 @@ import {
       link: "/admin/team-members",
       icon: <LifebuoyIcon />,
     },
+    {
+      label: "Employees",
+      link: "/admin/employees",
+      icon: <LifebuoyIcon />,
+    },
   ];
   

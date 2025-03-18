@@ -156,7 +156,7 @@ export default function RoleManagement() {
                     )}
                   </div>
                 </div>
-
+{/* 
                 <Button
                   variant="outline"
                   type="button"
@@ -164,7 +164,7 @@ export default function RoleManagement() {
                   onClick={() => setIsModalOpen(true)}
                 >
                   Create new role
-                </Button>
+                </Button> */}
               </div>
 
               <div className="space-y-2">

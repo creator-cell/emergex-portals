@@ -142,7 +142,7 @@ const Page = () => {
           } catch (err) {
             setError("Failed to fetch address.");
           }
-          finally{
+          finally {
             setIsGettingLocation(false)
           }
         },
@@ -235,7 +235,10 @@ const Page = () => {
             <div className="mb-6">
               <label htmlFor="country" className="block text-sm font-normal mb-1">
                 Country
+                <span className="text-red-500">*</span>
+
               </label>
+              
               <div className="flex items-center border p-2 rounded">
                 <input
                   id="country"
@@ -260,6 +263,8 @@ const Page = () => {
             <div className="mb-6">
               <label htmlFor="region" className="block text-sm font-normal mb-1">
                 Region
+                <span className="text-red-500">*</span>
+
               </label>
               <div className="flex items-center border p-2 rounded">
                 <input
@@ -284,6 +289,8 @@ const Page = () => {
             <div className="mb-6">
               <label htmlFor="worksite" className="block text-sm font-normal mb-1">
                 Worksite
+                <span className="text-red-500">*</span>
+
               </label>
               <div className="flex items-center">
                 <div className="flex-grow border p-2 rounded">
@@ -325,10 +332,15 @@ const Page = () => {
               <Button
                 onClick={handleSubmit}
                 disabled={isLoading}
-                className="bg-gradient-to-r rounded-[20px] from-[rgba(36,120,20,1)] to-[rgba(61,162,41,1)] hover:bg-gradient-to-l flex items-center space-x-1 p-5 w-full sm:w-auto"
+                className="bg-gradient-to-r rounded-[20px] from-[rgba(36,120,20,1)] to-[rgba(61,162,41,1)] hover:bg-gradient-to-l flex items-center justify-center space-x-2 p-5 w-full sm:w-auto"
               >
-                <span className="text-white">Add new</span>
+                {isLoading ? (
+                  <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <span className="text-white">Add new</span>
+                )}
               </Button>
+
             </div>
           </div>
         </div>
