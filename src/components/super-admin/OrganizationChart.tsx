@@ -13,7 +13,7 @@ import { Card } from "@/components/ui/card";
 const CustomNode = ({ data }: { data: any }) => {
   return (
     <div className="relative">
-      <Handle type="target" position={Position.Top} className="w-2 h-2" />
+      <Handle type="target" position={Position.Top} className="w-2 h-2 " />
       <Card className="p-3 w-[200px] text-center border border-border bg-white">
         <div className="text-sm font-medium">{data.role}</div>
         <div className="text-sm">{data.name}</div>
