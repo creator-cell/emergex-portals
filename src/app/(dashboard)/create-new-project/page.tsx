@@ -304,7 +304,7 @@ export default function Page() {
                             <Select
                               onValueChange={(value) => {
                                 setSelectedProject(value)
-                                const selectedProject = projectsData?.data.find((project) => project._id === value)
+                                const selectedProject = projectsData?.data?.find((project) => project._id === value)
                                 field.onChange(value)
                                 if (selectedProject) {
                                   setValue("description", selectedProject.description)
@@ -315,12 +315,12 @@ export default function Page() {
                             >
                               <SelectTrigger className="h-12">
                                 <SelectValue placeholder="Select project">
-                                  {projectsData?.data.find((project) => project._id === field.value)?.name ||
+                                  {projectsData?.data?.find((project) => project._id === field.value)?.name ||
                                     "Select project"}
                                 </SelectValue>
                               </SelectTrigger>
                               <SelectContent>
-                                {projectsData?.data.map((project) => (
+                                {projectsData?.data?.map((project) => (
                                   <SelectItem key={project._id} value={project._id}>
                                     {project.name} - {project.id}
                                   </SelectItem>

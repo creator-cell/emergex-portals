@@ -15,7 +15,7 @@ const CustomNode = ({ data }: { data: any }) => {
     <div className="relative">
       <Handle type="target" position={Position.Top} className="w-2 h-2" />
       <Card className="p-3 w-[200px] text-center border border-border bg-white">
-        <div className="text-sm font-medium">{data.designation}</div>
+        <div className="text-sm font-medium">{data.role}</div>
         <div className="text-sm">{data.name}</div>
         <div className="text-xs text-muted-foreground mt-1">{data.email}</div>
       </Card>
@@ -57,6 +57,8 @@ export function OrganizationChart({ data = {} }) {
         const nodeId = employee._id;
         const xPosition = startX + (index *2* minSpacing);
 
+        console.log("employee: ",employee)
+
         // Create node
         nodes.push({
           id: nodeId,
@@ -66,6 +68,7 @@ export function OrganizationChart({ data = {} }) {
             name: employee.name,
             designation: employee.designation,
             email: employee.email,
+            role: employee.title,
             priority: currentLevel
           }
         });

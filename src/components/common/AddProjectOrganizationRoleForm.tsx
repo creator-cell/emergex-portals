@@ -54,7 +54,7 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
     const projectEmployeesWithoutPriority = projectEmployeesWithoutPriorityResponse?.data?.[0]?.employees || []
 
     const { data: teamApiResponse } = useGetTeamsNamesQuery();
-    const { data: rolesApiResponse } = useFetchRolesQuery();
+    const { data: rolesApiResponse } = useFetchRolesQuery({});
     const { data: employeesResponse } = useFetchEmployeesQuery();
 
     const teamData = teamApiResponse?.data;
@@ -171,7 +171,7 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
                             render={({ field }) => (
                                 <Select onValueChange={field.onChange} value={field.value || ""}>
                                     <SelectTrigger className="h-12">
-                                        <SelectValue placeholder="Select team" />
+                                        <SelectValue placeholder="Select Role" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         {rolesData?.map((team: any, index: number) => (
@@ -186,8 +186,8 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
                                 </Select>
                             )}
                         />
-                        {errors.team && (
-                            <p className="text-red-500 text-sm">{errors.team.message}</p>
+                        {errors.role && (
+                            <p className="text-red-500 text-sm">{errors.role.message}</p>
                         )}
                     </div>
 
