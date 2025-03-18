@@ -67,7 +67,7 @@ export const teamApi = createApi({
       }),
     }),
 
-    addProjectRole: builder.mutation<any, { projectId: string; roles: { team: string; roleDescription: string; assignTo: string }[] }>({
+    addProjectRole: builder.mutation<any, { projectId: string; roles: { roleId: string; roleDescription: string; assignTo: string }[] }>({
       query: ({ projectId, roles }) => ({
         url: `/roles/project-roles/${projectId}`,
         method: 'PUT',

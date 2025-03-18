@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { useFetchEmployeesQuery, useFetchTeamsQuery, useAddEmployeeInTeamMutation, useAddProjectRoleMutation } from "@/store/api/team/teamApi"
+import { useFetchEmployeesQuery, useFetchTeamsQuery, useAddEmployeeInTeamMutation, useAddProjectRoleMutation, useFetchRolesQuery } from "@/store/api/team/teamApi"
 import { toast, Toaster } from "sonner"
 
 const formSchema = z.object({
@@ -28,10 +28,14 @@ export default function RoleManagement() {
   const [selectedRole, setSelectedRole] = useState<string | null>(null)
   const projectId = window.location.pathname.split('/').pop() || ''
 
+  const { data: rolesApiResponse } = useFetchRolesQuery();
+
   const { data: teamData } = useFetchTeamsQuery()
   const { data: employeeData } = useFetchEmployeesQuery()
   const [addEmployeeInTeam] = useAddEmployeeInTeamMutation()
   const [addProjectRole, { isLoading }] = useAddProjectRoleMutation()
+
+  const rolesData = rolesApiResponse?.data
 
   const {
     control,
@@ -54,7 +58,7 @@ export default function RoleManagement() {
         projectId,
         roles: [
           {
-            team: data.role,
+            roleId: data.role,
             roleDescription: data.description,
             assignTo: data.assignTo,
           },
@@ -113,7 +117,28 @@ export default function RoleManagement() {
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="flex items-center gap-4">
-                    <Controller
+                        <Controller
+                                                name="role"
+                                                control={control}
+                                                render={({ field }) => (
+                                                    <Select onValueChange={field.onChange} value={field.value || ""}>
+                                                        <SelectTrigger className="h-12">
+                                                            <SelectValue placeholder="Select team" />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            {rolesData?.map((team: any, index: number) => (
+                                                                <SelectItem
+                                                                    key={team._id + index}
+                                                                    value={team._id}
+                                                                >
+                                                                    {team.title}
+                                                                </SelectItem>
+                                                            ))}
+                                                        </SelectContent>
+                                                    </Select>
+                                                )}
+                                            />
+                    {/* <Controller
                       name="role"
                       control={control}
                       render={({ field }) => (
@@ -121,7 +146,7 @@ export default function RoleManagement() {
                           onValueChange={(value) => {
                             setSelectedRole(value)
                             field.onChange(value)
-                            const selectedRole = teamData?.data.find((team) => team._id === value)
+                            const selectedRole = rolesApiResponse?.data.find((team) => team._id === value)
                             if (selectedRole) {
                               // You could set description or other fields based on role
                             }
@@ -130,11 +155,11 @@ export default function RoleManagement() {
                         >
                           <SelectTrigger className="h-12">
                             <SelectValue placeholder="Add Role">
-                              {teamData?.data.find((team) => team._id === field.value)?.name || "Add Role"}
+                              {rolesApiResponse?.data.find((team) => team._id === field.value)?.name || "Add Role"}
                             </SelectValue>
                           </SelectTrigger>
                           <SelectContent>
-                            {teamData?.data.map((team) => (
+                            {rolesApiResponse?.data.map((team) => (
                               <SelectItem key={team._id} value={team._id}>
                                 {team.name}
                               </SelectItem>
@@ -142,7 +167,7 @@ export default function RoleManagement() {
                           </SelectContent>
                         </Select>
                       )}
-                    />
+                    /> */}
                     {errors.role && <p className="text-red-500 text-sm mt-1">{String(errors.role.message)}</p>}
                     {selectedRole && (
                       <Button
