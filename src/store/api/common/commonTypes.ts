@@ -327,6 +327,7 @@ export interface FetchProjectByIdResponse {
       employees: {
         _id: string;
         name: string;
+        title: string;
         contactNo: string;
         designation: string;
         email: string;

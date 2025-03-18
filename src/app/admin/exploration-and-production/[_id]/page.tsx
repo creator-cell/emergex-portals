@@ -47,6 +47,7 @@ const page = ({ params }: { params: { _id: string } }) => {
   }
 
   const project = data?.data;
+  console.log("project: ",project)
 
   return (
     <div className="w-full min-h-screen relative flex flex-col py-5 container">
@@ -226,7 +227,7 @@ const page = ({ params }: { params: { _id: string } }) => {
                                 Assigned to
                               </h2>
                               <p className="font-medium">{employee?.name}</p>
-                              <p className="text-sm text-muted-foreground">{employee?.designation}</p>
+                              <p className="text-sm text-muted-foreground">{employee?.title || employee?.designation}</p>
                             </div>
                           )}
                         </div>
