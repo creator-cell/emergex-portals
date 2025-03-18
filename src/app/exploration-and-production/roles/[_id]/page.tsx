@@ -60,7 +60,7 @@ export default function RoleManagement() {
           },
         ],
       }).unwrap()
-  
+
       if (response?.success) {
         toast.success("Role assigned successfully")
         reset()
@@ -72,7 +72,7 @@ export default function RoleManagement() {
       toast.error(error?.data?.error || error?.data?.message || "Failed to assign role")
     }
   }
-  
+
 
   const handleModalSubmit = () => {
     if (newRoleName && selectedEmployee) {
@@ -102,14 +102,16 @@ export default function RoleManagement() {
 
   return (
     <div className="p-6 mx-auto w-full max-w-[100rem]">
-      <Toaster/>
+      <Toaster />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-8">
           <div className="relative mb-12">
             <Card className="ml-8 p-6 space-y-6 rounded-[20px] shadow-none border-none">
               <div className="flex gap-4">
                 <div className="flex-1 space-y-2">
-                  <label className="text-sm text-gray-600">Role</label>
+                  <label className="text-sm text-gray-600">Role
+                    <span className="text-red-500">*</span>
+                  </label>
                   <div className="flex items-center gap-4">
                     <Controller
                       name="role"
@@ -168,7 +170,8 @@ export default function RoleManagement() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm text-gray-600">Description</label>
+                <label className="text-sm text-gray-600">Description           <span className="text-red-500">*</span>
+                </label>
                 <Controller
                   name="description"
                   control={control}
@@ -182,7 +185,8 @@ export default function RoleManagement() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm text-gray-600">Assign to</label>
+                <label className="text-sm text-gray-600">Assign to           <span className="text-red-500">*</span>
+                </label>
                 <Controller
                   name="assignTo"
                   control={control}
@@ -218,9 +222,13 @@ export default function RoleManagement() {
                   type="submit"
                   disabled={isLoading}
                 >
-                  <span className="text-white">
-                    {isLoading ? "Assigning Role..." : "Save Role Assignment"}
-                  </span>
+                  {isLoading ? (
+                    <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <span className="text-white">Save Role Assignment</span>
+                  )}
+
+
                 </Button>
               </div>
             </Card>
@@ -234,7 +242,8 @@ export default function RoleManagement() {
             <h3 className="text-lg mb-4">Add new role</h3>
 
             <div className="mb-6">
-              <label className="block text-sm font-normal mb-1">Team</label>
+              <label className="block text-sm font-normal mb-1">Team           <span className="text-red-500">*</span>
+              </label>
               <div className="relative border rounded">
                 <Select onValueChange={(value) => setNewRoleName(value)} value={newRoleName}>
                   <SelectTrigger className="border-none">
@@ -252,7 +261,8 @@ export default function RoleManagement() {
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-normal mb-1">Employee</label>
+              <label className="block text-sm font-normal mb-1">Employee           <span className="text-red-500">*</span>
+              </label>
               <div className="relative border rounded">
                 <Select onValueChange={(value) => setSelectedEmployee(value)} value={selectedEmployee}>
                   <SelectTrigger className="border-none">
@@ -278,7 +288,12 @@ export default function RoleManagement() {
                 onClick={handleModalSubmit}
                 disabled={isCreatingRole || !newRoleName || !selectedEmployee}
               >
-                Add Employee to Team
+                {isCreatingRole ? (
+                  <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <span className="text-white">                Add Employee to Team
+                  </span>
+                )}
               </Button>
             </div>
           </div>
