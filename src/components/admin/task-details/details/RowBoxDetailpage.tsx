@@ -12,6 +12,9 @@ interface RowBoxPropsType {
       name:string;
       designation:string;
     };
+    role: {
+      title:string;
+    };
   };
   status: string;
   createdAt: string;
@@ -49,7 +52,7 @@ const RowBoxDetailpage: React.FC<RowBoxPropsType> = ({
     >
       <div className="text-left pl-4 ">
         <TextBar
-          title={role?.employee.designation}
+          title={role?.role.title}
           line={role?.employee.name}
           TitleClassName="text-label"
           LineClassname="text-[16px] leading-6 font-medium"

@@ -53,7 +53,7 @@ const page = () => {
               <div>
                 <h2 className="text-darkish text-lg">{e.title}</h2>
                 <p className="text-[#767676] text-sm">
-                  {e.role.username} (<span>{e.role.desaignation || "Hr officer"}</span>)
+                  {e.role.employee.name } (<span>{e.role.role.title || "Hr officer"}</span>)
                 </p>
               </div>
               <div>
