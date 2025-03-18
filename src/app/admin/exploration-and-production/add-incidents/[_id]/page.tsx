@@ -28,7 +28,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { compressImage } from "@/components/ImageCompression";
 
-interface FormData extends z.infer<typeof FormSchema> {}
+interface FormData extends z.infer<typeof FormSchema> { }
 
 // Zod Validation Schema
 const FormSchema = z.object({
@@ -148,7 +148,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
         if (fieldName === "images") {
           // Get current images array
           const currentImages = watch("images") || [];
-          
+
           // Check total number of images including existing ones
           if (currentImages.length + files.length > 5) {
             toast.error("Maximum 5 images allowed");
@@ -161,7 +161,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
           // Process each file
           for (let i = 0; i < files.length; i++) {
             const file = files[i];
-            
+
             // Validate file type
             if (!file.type.startsWith('image/')) {
               toast.error(`${file.name} is not an image file`);
@@ -192,7 +192,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
             // Update form state with combined base64 images
             const updatedBase64Images = [...currentImages, ...newBase64Images];
             setValue("images", updatedBase64Images);
-            
+
             // Update UI state
             setImages(prev => [...prev, ...newImages]);
             toast.success('Images uploaded successfully');
@@ -200,7 +200,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
         } else {
           // Handle signature upload (remains the same)
           const file = files[0];
-          
+
           if (!file.type.startsWith('image/')) {
             toast.error('Please upload an image file for signature');
             return;
@@ -288,7 +288,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
     } catch (error) {
       console.error("Error reporting incident:", error);
       toast.error("An error occurred while submitting the form.");
-    } finally{
+    } finally {
       setLoading(false)
     }
   };
@@ -381,11 +381,10 @@ const Page = ({ params }: { params: { _id: string } }) => {
                           onChange={() => field.onChange(level)}
                         />
                         <div
-                          className={`py-1.5 px-3 md:px-4 rounded-md text-sm sm:text-base font-medium border ${
-                            field.value === level
+                          className={`py-1.5 px-3 md:px-4 rounded-md text-sm sm:text-base font-medium border ${field.value === level
                               ? "bg-light-greento-white border-transparent"
                               : "bg-white hover:bg-green-50 border-[#D9D9D9]"
-                          }`}
+                            }`}
                         >
                           {level}
                         </div>
@@ -416,11 +415,10 @@ const Page = ({ params }: { params: { _id: string } }) => {
                       className="hidden"
                     />
                     <div
-                      className={` py-1.5 px-3 md:px-4 rounded-md text-sm  sm:text-base font-medium border border-[#D9D9D9] ${
-                        field.value === "In Progress"
+                      className={` py-1.5 px-3 md:px-4 rounded-md text-sm  sm:text-base font-medium border border-[#D9D9D9] ${field.value === "In Progress"
                           ? " bg-green-50 border  border-customGreen shadow-md"
                           : "bg-white  hover:bg-green-50 border border-[#D9D9D9]"
-                      }`}
+                        }`}
                     >
                       In Progress
                     </div>
@@ -433,11 +431,10 @@ const Page = ({ params }: { params: { _id: string } }) => {
                       className="hidden"
                     />
                     <div
-                      className={` py-1.5 px-3 md:px-4 rounded-md text-sm   sm:text-base font-medium border border-[#D9D9D9] ${
-                        field.value === "Assigned"
+                      className={` py-1.5 px-3 md:px-4 rounded-md text-sm   sm:text-base font-medium border border-[#D9D9D9] ${field.value === "Assigned"
                           ? " bg-green-50 border  border-customGreen shadow-md"
                           : "bg-white  hover:bg-green-50 border border-[#D9D9D9]"
-                      }`}
+                        }`}
                     >
                       Assigned
                     </div>
@@ -450,11 +447,10 @@ const Page = ({ params }: { params: { _id: string } }) => {
                       className="hidden"
                     />
                     <div
-                      className={` py-1.5 px-3 md:px-4 rounded-md  text-sm sm:text-base font-medium border border-[#D9D9D9] ${
-                        field.value === "Delayed"
+                      className={` py-1.5 px-3 md:px-4 rounded-md  text-sm sm:text-base font-medium border border-[#D9D9D9] ${field.value === "Delayed"
                           ? " bg-green-50 border  border-customGreen shadow-md"
                           : "bg-white  hover:bg-green-50 border border-[#D9D9D9]"
-                      }`}
+                        }`}
                     >
                       Delayed
                     </div>
@@ -467,11 +463,10 @@ const Page = ({ params }: { params: { _id: string } }) => {
                       className="hidden"
                     />
                     <div
-                      className={` py-1.5 px-3 md:px-4 rounded-md text-sm   sm:text-base font-medium border border-[#D9D9D9] ${
-                        field.value === "Completed"
+                      className={` py-1.5 px-3 md:px-4 rounded-md text-sm   sm:text-base font-medium border border-[#D9D9D9] ${field.value === "Completed"
                           ? " bg-green-50 border  border-customGreen shadow-md"
                           : "bg-white  hover:bg-green-50 border border-[#D9D9D9]"
-                      }`}
+                        }`}
                     >
                       Completed
                     </div>
@@ -484,11 +479,10 @@ const Page = ({ params }: { params: { _id: string } }) => {
                       className="hidden"
                     />
                     <div
-                      className={` py-1.5 px-3 md:px-4 rounded-md text-sm   sm:text-base font-medium border border-[#D9D9D9] ${
-                        field.value === "Cancelled"
+                      className={` py-1.5 px-3 md:px-4 rounded-md text-sm   sm:text-base font-medium border border-[#D9D9D9] ${field.value === "Cancelled"
                           ? " bg-green-50 border  border-customGreen shadow-md"
                           : "bg-white  hover:bg-green-50 border border-[#D9D9D9]"
-                      }`}
+                        }`}
                     >
                       Cancelled
                     </div>
@@ -520,7 +514,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
               />
             )}
           />
-           {errors.type && (
+          {errors.type && (
             <p className="text-red-500 text-sm">{errors.type.message}</p>
           )}
         </div>
@@ -542,7 +536,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
               />
             )}
           />
-            {errors.description && (
+          {errors.description && (
             <p className="text-red-500 text-sm">{errors.description.message}</p>
           )}
         </div>
@@ -585,7 +579,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
               text="Count of injured people"
               htmlFor="countinjuredPeople"
             />
-                        <span className="text-red-500">*</span>
+            <span className="text-red-500">*</span>
 
             <div>
               <Controller
@@ -663,58 +657,58 @@ const Page = ({ params }: { params: { _id: string } }) => {
           <span className="text-red-500">*</span>
 
           <div>
-          <Controller
-                  name="damageAssets"
-                  control={control}
-                  defaultValue={[]}
-                  render={({ field }) => (
-                    <div className="space-y-2">
-                      {/* Display selected assets as tags */}
-                      {field.value.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
-                          {field.value.map((asset: string) => (
-                            <div
-                              key={asset}
-                              className="bg-green-50 border border-customGreen rounded-md px-2 py-1 flex items-center gap-1"
-                            >
-                              <span>{asset}</span>
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  const updatedValue = field.value.filter((val: string) => val !== asset)
-                                  field.onChange(updatedValue)
-                                }}
-                                className="text-red-500 hover:text-red-700"
-                              >
-                                <IoMdClose size={16} />
-                              </button>
-                            </div>
-                          ))}
+            <Controller
+              name="damageAssets"
+              control={control}
+              defaultValue={[]}
+              render={({ field }) => (
+                <div className="space-y-2">
+                  {/* Display selected assets as tags */}
+                  {field.value.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {field.value.map((asset: string) => (
+                        <div
+                          key={asset}
+                          className="bg-green-50 border border-customGreen rounded-md px-2 py-1 flex items-center gap-1"
+                        >
+                          <span>{asset}</span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const updatedValue = field.value.filter((val: string) => val !== asset)
+                              field.onChange(updatedValue)
+                            }}
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <IoMdClose size={16} />
+                          </button>
                         </div>
-                      )}
-
-                      {/* Dropdown for selecting assets */}
-                      <Select
-                        onValueChange={(value) => {
-                          if (!field.value.includes(value)) {
-                            field.onChange([...field.value, value])
-                          }
-                        }}
-                      >
-                        <SelectTrigger className="outline-none h-12">
-                          <SelectValue placeholder="Add assets" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {["assets 1", "assets 2", "assets 3"].map((asset) => (
-                            <SelectItem key={asset} value={asset} disabled={field.value.includes(asset)}>
-                              {asset}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      ))}
                     </div>
                   )}
-                />
+
+                  {/* Dropdown for selecting assets */}
+                  <Select
+                    onValueChange={(value) => {
+                      if (!field.value.includes(value)) {
+                        field.onChange([...field.value, value])
+                      }
+                    }}
+                  >
+                    <SelectTrigger className="outline-none h-12">
+                      <SelectValue placeholder="Add assets" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {["assets 1", "assets 2", "assets 3"].map((asset) => (
+                        <SelectItem key={asset} value={asset} disabled={field.value.includes(asset)}>
+                          {asset}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+            />
           </div>
           {errors.damageAssets && (
             <p className="text-red-500 text-sm">{errors.damageAssets.message}</p>
@@ -762,11 +756,10 @@ const Page = ({ params }: { params: { _id: string } }) => {
                       <label
                         key={i}
                         htmlFor={e.title}
-                        className={`cursor-pointer border rounded-lg px-3 py-2 flex items-center gap-2  ${
-                          field.value.includes(e.title)
+                        className={`cursor-pointer border rounded-lg px-3 py-2 flex items-center gap-2  ${field.value.includes(e.title)
                             ? "border-customGreen"
                             : "border-[#D9D9D9]"
-                        } `}
+                          } `}
                       >
                         <Checkbox
                           id={e.title}
@@ -775,8 +768,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
                             const updatedValue = checked
                               ? [...field.value, e.title]
                               : field.value.filter(
-                                  (val: string) => val !== e.title
-                                );
+                                (val: string) => val !== e.title
+                              );
                             field.onChange(updatedValue);
                           }}
                           className="border-none data-[state=checked]:bg-custom-linear bg-[#E6E6E6] data-[state=checked]:text-white text-[#232323]"
@@ -932,7 +925,7 @@ const Page = ({ params }: { params: { _id: string } }) => {
 
         <div className="space-y-4">
           <div className="text-darkish">
-            
+
             <Controller
               name="informToTeam"
               control={control}
@@ -994,11 +987,16 @@ const Page = ({ params }: { params: { _id: string } }) => {
             <span className="text-black text-[16px]">Cancel</span>
           </Button>
           <Button
-          disabled={loading}
+            disabled={loading}
             type="submit"
             className="bg-gradient-to-r rounded-[5px] from-[rgba(61,162,41,1)] to-[rgba(36,120,20,1)] hover:bg-gradient-to-l flex items-center space-x-1 p-6 w-full sm:w-auto"
           >
-            <span className="text-white text-[16px]">Add Incident</span>
+            {loading ? (
+              <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <span className="text-white">Add Incident</span>
+            )}
+
           </Button>
         </div>
       </form>

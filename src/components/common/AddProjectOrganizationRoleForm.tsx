@@ -87,6 +87,9 @@ const AddProjectOrganizationRoleForm: React.FC<AddProjectOrganizationRoleFormPro
             await refetch();
             reset();
             closeModel();
+
+            window.location.reload();
+
         } catch (error) {
             console.error("Error adding role:", error);
         }

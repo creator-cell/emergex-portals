@@ -438,8 +438,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
                         />
                         <div
                           className={`py-1.5 px-3 md:px-4 rounded-md text-sm sm:text-base font-medium border ${field.value === level
-                              ? "bg-light-greento-white border-transparent"
-                              : "bg-white hover:bg-green-50 border-[#D9D9D9]"
+                            ? "bg-light-greento-white border-transparent"
+                            : "bg-white hover:bg-green-50 border-[#D9D9D9]"
                             }`}
                         >
                           {level}
@@ -466,8 +466,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
                     <input type="radio" {...field} value="In Progress" className="hidden" />
                     <div
                       className={`py-1.5 px-3 md:px-4 rounded-md text-sm sm:text-base font-medium border border-[#D9D9D9] ${field.value === "In Progress"
-                          ? "bg-green-50 border border-customGreen shadow-md"
-                          : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
+                        ? "bg-green-50 border border-customGreen shadow-md"
+                        : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
                         }`}
                     >
                       In Progress
@@ -477,8 +477,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
                     <input type="radio" {...field} value="Assigned" className="hidden" />
                     <div
                       className={`py-1.5 px-3 md:px-4 rounded-md text-sm sm:text-base font-medium border border-[#D9D9D9] ${field.value === "Assigned"
-                          ? "bg-green-50 border border-customGreen shadow-md"
-                          : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
+                        ? "bg-green-50 border border-customGreen shadow-md"
+                        : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
                         }`}
                     >
                       Assigned
@@ -488,8 +488,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
                     <input type="radio" {...field} value="Delayed" className="hidden" />
                     <div
                       className={`py-1.5 px-3 md:px-4 rounded-md text-sm sm:text-base font-medium border border-[#D9D9D9] ${field.value === "Delayed"
-                          ? "bg-green-50 border border-customGreen shadow-md"
-                          : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
+                        ? "bg-green-50 border border-customGreen shadow-md"
+                        : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
                         }`}
                     >
                       Delayed
@@ -499,8 +499,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
                     <input type="radio" {...field} value="Completed" className="hidden" />
                     <div
                       className={`py-1.5 px-3 md:px-4 rounded-md text-sm sm:text-base font-medium border border-[#D9D9D9] ${field.value === "Completed"
-                          ? "bg-green-50 border border-customGreen shadow-md"
-                          : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
+                        ? "bg-green-50 border border-customGreen shadow-md"
+                        : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
                         }`}
                     >
                       Completed
@@ -510,8 +510,8 @@ const Page = ({ params }: { params: { _id: string } }) => {
                     <input type="radio" {...field} value="Cancelled" className="hidden" />
                     <div
                       className={`py-1.5 px-3 md:px-4 rounded-md text-sm sm:text-base font-medium border border-[#D9D9D9] ${field.value === "Cancelled"
-                          ? "bg-green-50 border border-customGreen shadow-md"
-                          : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
+                        ? "bg-green-50 border border-customGreen shadow-md"
+                        : "bg-white hover:bg-green-50 border border-[#D9D9D9]"
                         }`}
                     >
                       Cancelled
@@ -974,7 +974,11 @@ const Page = ({ params }: { params: { _id: string } }) => {
             type="submit"
             className="bg-gradient-to-r rounded-[5px] from-[rgba(61,162,41,1)] to-[rgba(36,120,20,1)] hover:bg-gradient-to-l flex items-center space-x-1 p-6 w-full sm:w-auto"
           >
-            <span className="text-white text-[16px]">Update Incident</span>
+            {loading ? (
+              <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <span className="text-white">Update Incident</span>
+            )}
           </Button>
         </div>
       </form>

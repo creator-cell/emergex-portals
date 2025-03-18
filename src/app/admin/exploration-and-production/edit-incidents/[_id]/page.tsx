@@ -974,7 +974,11 @@ const Page = ({ params }: { params: { _id: string } }) => {
             type="submit"
             className="bg-gradient-to-r rounded-[5px] from-[rgba(61,162,41,1)] to-[rgba(36,120,20,1)] hover:bg-gradient-to-l flex items-center space-x-1 p-6 w-full sm:w-auto"
           >
-            <span className="text-white text-[16px]">Update Incident</span>
+              {loading ? (
+              <div className="h-5 w-5 border-4 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <span className="text-white">Update Incident</span>
+            )}
           </Button>
         </div>
       </form>
