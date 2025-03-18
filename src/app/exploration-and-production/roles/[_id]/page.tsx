@@ -123,7 +123,7 @@ export default function RoleManagement() {
                                                 render={({ field }) => (
                                                     <Select onValueChange={field.onChange} value={field.value || ""}>
                                                         <SelectTrigger className="h-12">
-                                                            <SelectValue placeholder="Select team" />
+                                                            <SelectValue placeholder="Select role" />
                                                         </SelectTrigger>
                                                         <SelectContent>
                                                             {rolesData?.map((team: any, index: number) => (

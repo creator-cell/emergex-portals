@@ -70,7 +70,7 @@ const DetailsPage = () => {
 
   const [updateIncidentStatus] = useUpdateIncidentStatusMutation();
 
-  const { data: statusData } = useFetchStatusUpdateByIncidentIdQuery(incidentId);
+  const { data: statusData,refetch:refetchStatus } = useFetchStatusUpdateByIncidentIdQuery(incidentId);
 
   const handleStatusChange = (newStatus: string) => {
     setPendingStatus(newStatus)
@@ -88,6 +88,7 @@ const DetailsPage = () => {
         if (response?.success) {
           toast.success(response.message || `Status updated to: ${pendingStatus}`)
           refetch()
+          refetchStatus()
         } else {
           toast.success(`Status updated to: ${pendingStatus}`)
         }

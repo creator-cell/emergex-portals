@@ -117,27 +117,27 @@ export default function RoleManagement() {
                     <span className="text-red-500">*</span>
                   </label>
                   <div className="flex items-center gap-4">
-                        <Controller
-                                                name="role"
-                                                control={control}
-                                                render={({ field }) => (
-                                                    <Select onValueChange={field.onChange} value={field.value || ""}>
-                                                        <SelectTrigger className="h-12">
-                                                            <SelectValue placeholder="Select team" />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            {rolesData?.map((team: any, index: number) => (
-                                                                <SelectItem
-                                                                    key={team._id + index}
-                                                                    value={team._id}
-                                                                >
-                                                                    {team.title}
-                                                                </SelectItem>
-                                                            ))}
-                                                        </SelectContent>
-                                                    </Select>
-                                                )}
-                                            />
+                    <Controller
+                      name="role"
+                      control={control}
+                      render={({ field }) => (
+                        <Select onValueChange={field.onChange} value={field.value || ""}>
+                          <SelectTrigger className="h-12">
+                            <SelectValue placeholder="Select role" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {rolesData?.map((team: any, index: number) => (
+                              <SelectItem
+                                key={team._id + index}
+                                value={team._id}
+                              >
+                                {team.title}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+                    />
                     {/* <Controller
                       name="role"
                       control={control}

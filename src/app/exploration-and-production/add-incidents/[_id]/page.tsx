@@ -46,7 +46,7 @@ const FormSchema = z.object({
     .min(1, "Count of injured people is required"),
   countOfTotalPeople: z.string().min(1, "Count of total people is required"),
   location: z.string().min(1, "Location is required"),
-  utilityeffected: z.array(z.string()).min(1, "At least one utility must be selected"),
+  damageAssets: z.array(z.string()).min(1, "At least one utility must be selected"),
   finance: z.string().min(1, "Finance is required"),
   utilityAffected: z
     .array(z.string())

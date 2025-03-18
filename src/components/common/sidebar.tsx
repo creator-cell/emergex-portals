@@ -36,14 +36,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children, sidebarLinks }) => {
             <SidebarContent className="bg-custom-gradient">
                 <SidebarGroup>
                     <SidebarGroupLabel className="w-[117px] py-5">
-                    <Link href={"/admin"}>
+                    {/* <Link href={"/admin"}> */}
                     <Image
                             src={logo}
                             alt="emere-logo"
                             width={200}
                             height={100}
                         />
-                    </Link>
+                    {/* </Link> */}
                       
                     </SidebarGroupLabel>
                     <SidebarGroupContent className="mt-10">
